@@ -12,11 +12,13 @@ async function api(url, options = {}) {
         }
     );
 
+    const dados = await response.json();
+
     if (!response.ok) {
-        throw new Error("Erro na requisição");
+        throw new Error(dados.error || "Erro na requisição");
     }
 
-    return response.json();
+    return dados;
 }
 
 export default api;

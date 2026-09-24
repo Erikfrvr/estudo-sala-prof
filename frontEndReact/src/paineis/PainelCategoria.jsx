@@ -14,12 +14,11 @@ function PainelCategoria() {
     async function handelDelete(id) {
         try{
             const response= await categoriaService.deletarCategoria(id);
-            const mensagem=  response.json();
-            alert(mensagem.mensagem)
-            carregarCategoria();
+            alert(response.mensagem)
+            await carregarCategoria();
 
         }catch(erro){
-            alert(erro)
+            alert(erro.message)
         }
         
     }

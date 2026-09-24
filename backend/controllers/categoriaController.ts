@@ -29,7 +29,7 @@ export async function criarCategoria(req:Request, res:Response) {
 export async function buscarCategoriaPorNome(req: Request, res: Response) { 
     
         try{
-            const nome= req.params.nome;
+            const nome= req.params.nome as string;
             const categoria= await categoriaService.buscarCategoriaPorNome(nome);
             res.status(200).json(categoria);
         }catch(error){
@@ -43,12 +43,12 @@ export async function buscarCategoriaPorNome(req: Request, res: Response) {
 export async function deletarCategoria(req: Request, res: Response){
 
     try{
-           const id= req.params.id;
+           const id= Number(req.params.id);
            await categoriaService.deletarCategoria(id)
            res.status(200).json({mensagem:"Categoria deletada com sucesso !"})
 
-    }catch(erro){
-            res.status(500).json({error:erro})
+    }catch(erro: any){
+            res.status(500).json({error:erro.message})
 
     }
 

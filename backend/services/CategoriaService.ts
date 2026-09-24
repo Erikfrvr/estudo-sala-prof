@@ -112,7 +112,7 @@ class CategoriaService{
 
         try{
             const resultB= await categoriaInfrastructure.buscarCategoriaPorId(id);
-            if(!resultB){
+            if(resultB.length === 0){
                 throw new Error("Categoria não existe no banco de dados")
             }
             const resultDeletar= await categoriaInfrastructure.deletarCategoria(id);
@@ -121,7 +121,7 @@ class CategoriaService{
             }
             
         } catch(erro){
-             throw new Error(erro)
+             throw new Error(erro.message)
         }
      }
 

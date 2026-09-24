@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { listarCategorias, criarCategoria, deletarCategoria } from "../controllers/categoriaController";
 
-const routerCategoria= new Router();
+const routerCategoria= Router();
 
 routerCategoria.get('/categorias', listarCategorias);
 routerCategoria.post('/categorias', criarCategoria);

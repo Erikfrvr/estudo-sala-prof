@@ -67,10 +67,10 @@ async listarCategorias(): Promise<any> {
    async deletarCategoria(id: Number): Promise<any> {
     const connection = await pool.getConnection();
     try{
-        const [result]= await pool.query<ResultSetHeader>("DELETE FROM categorias where id = ?",[id])
+        const [result]= await connection.query<ResultSetHeader>("DELETE FROM categorias where id = ?",[id])
         return result.affectedRows > 0;
     }catch(erro){
-        throw new Error("Categoria não encontrada")
+        throw erro
     } finally{
         connection.release();
     }
