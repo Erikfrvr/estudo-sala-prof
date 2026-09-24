@@ -12,4 +12,10 @@ async function criarCategoria(categoria) {
     })
 }
 
-export default {listarCategorias,criarCategoria};
+async function deletarCategoria(id){
+    return await api(`api/categorias/${id}`, {
+        method: "DELETE"
+    });
+}
+
+export default {listarCategorias,criarCategoria,deletarCategoria};

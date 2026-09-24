@@ -40,3 +40,17 @@ export async function buscarCategoriaPorNome(req: Request, res: Response) {
 }
 
 
+export async function deletarCategoria(req: Request, res: Response){
+
+    try{
+           const id= req.params.id;
+           await categoriaService.deletarCategoria(id)
+           res.status(200).json({mensagem:"Categoria deletada com sucesso !"})
+
+    }catch(erro){
+            res.status(500).json({error:erro})
+
+    }
+
+}
+

@@ -45,3 +45,21 @@
 .tabela th {
     background-color: #f4f4f4;
 }
+
+.acoes{
+    width: 80px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.deletar{
+    color:red;
+    cursor: pointer;
+}
+
+.atualizar{
+    color:var(--color-primary);
+    cursor: pointer;
+}

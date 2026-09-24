@@ -48,7 +48,7 @@ class CategoriaService{
         const categoriaResponseDTO:ListarCategoriaDTO={
                 
                 id: id,
-                nome: categoriaDTO.nome
+                nome: categoriaDTO.nome_categoria
         }
 
         return  categoriaResponseDTO ;
@@ -83,7 +83,7 @@ class CategoriaService{
    }
 
 
-   async buscarCategoriaPorId(id: Number): Promise<ListarCategoriaDTO> {
+   async buscarCategoriaPorId(id: number): Promise<ListarCategoriaDTO> {
     try{
         const categoria = await categoriaInfrastructure.buscarCategoriaPorId(id);
 
@@ -107,6 +107,24 @@ class CategoriaService{
    
 
 }
+
+     async deletarCategoria(id:number):Promise<void>{
+
+        try{
+            const resultB= await categoriaInfrastructure.buscarCategoriaPorId(id);
+            if(!resultB){
+                throw new Error("Categoria não existe no banco de dados")
+            }
+            const resultDeletar= await categoriaInfrastructure.deletarCategoria(id);
+            if(!resultDeletar){
+                throw new Error("Erro ao deletar a Categoria");  
+            }
+            
+        } catch(erro){
+             throw new Error(erro)
+        }
+     }
+
 }
 
 const categoriaService = new CategoriaService();

@@ -35,8 +35,6 @@ async listarCategorias(): Promise<any> {
         connection.release();
     }
 
-
-
    }
 
    async buscarCategoriaPorNome(nome_categoria: string): Promise<any> {
@@ -64,6 +62,19 @@ async listarCategorias(): Promise<any> {
             connection.release();
         }
 
+   }
+
+   async deletarCategoria(id: Number): Promise<any> {
+    const connection = await pool.getConnection();
+    try{
+        const [result]= await pool.query<ResultSetHeader>("DELETE FROM categorias where id = ?",[id])
+        return result.affectedRows > 0;
+    }catch(erro){
+        throw new Error("Categoria não encontrada")
+    } finally{
+        connection.release();
+    }
+       
    }
 
 

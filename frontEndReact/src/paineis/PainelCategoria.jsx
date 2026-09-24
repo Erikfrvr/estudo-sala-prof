@@ -1,14 +1,28 @@
 import "./PainelCategoria.css";
 import categoriaService from "../services/categoriaService";
 import {useState,useEffect} from "react";
-import { MdDelete } from "react-icons/md";
-import { GrUpdate } from "react-icons/gr";
+import { MdDelete,MdMode } from "react-icons/md";
+
 
 function PainelCategoria() {
 
 
     const [categorias,setCategorias]=useState([]);
     const [nomeCategoria,setNomeCategoria]=useState("");
+
+
+    async function handelDelete(id) {
+        try{
+            const response= await categoriaService.deletarCategoria(id);
+            const mensagem=  response.json();
+            alert(mensagem.mensagem)
+            carregarCategoria();
+
+        }catch(erro){
+            alert(erro)
+        }
+        
+    }
 
     useEffect(()=>{
         carregarCategoria()
@@ -56,7 +70,7 @@ function PainelCategoria() {
                         onChange={(e)=> setNomeCategoria(e.target.value)}
                     />
 
-                    <button type="submit" onClick={handleRegister} >
+                    <button type="submit"  onClick={handleRegister} >
                         Cadastrar
                     </button>
                 </div>
@@ -80,12 +94,12 @@ function PainelCategoria() {
                         {/* categorias da API */}
                         { categorias.map(
                             (dados)=>(
-                                <tr id={dados.id}>
+                                <tr key={dados.id}>
                                     <td>{dados.id}</td>
                                     <td>{dados.nome}</td>
-                                    <td>
-                                        <MdDelete />
-                                        <GrUpdate />
+                                    <td className="acoes">
+                                        <MdDelete className="deletar" onClick={() => handelDelete(dados.id)} />
+                                        <MdMode className="atualizar" />
                                         
                                     </td>
                                 

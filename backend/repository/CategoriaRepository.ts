@@ -6,6 +6,6 @@ export interface CategoriaRepository {
         listarCategorias(): Promise<any>;
         buscarCategoriaPorNome(nome_categoria: string): Promise<any>;
         // atualizarCategoria(id: Number, categoria: Categoria): Promise<any>;
-        // deletarCategoria(id: Number): Promise<any>;
+        deletarCategoria(id: Number): Promise<any>; 
     
 }
