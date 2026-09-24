@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Pliant:ital,wght@0,100..900;1,100..900&family=Press+Start+2P&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+  --color-primary-dark: #011C6B;
+  --color-primary-darker: #011142;
+  --color-primary: #01258F;
+  --font-family-roboto: 'Roboto', sans-serif;
+  --color-primary-light: #023BE6;
+  --color-primary-lighter: #0231BD;
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-style: none;
+  list-style: none;
+}
+
+h1{
+  color: var(--color-primary) ;
+}
+
+h2{
+  color: var(--color-primary-lighter);
+}
+
+body{
+  width: 100%;
+}

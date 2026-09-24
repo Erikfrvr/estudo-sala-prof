@@ -1,0 +1,92 @@
+/* Login.css */
+
+.containerLogin{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+    
+}
+
+.containerLogin img{
+    width: 300px;
+    margin: 0;
+}
+
+.formularioLogin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.inputLogin {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    width: 100%;
+}
+
+.inputLogin .iconViewLogin{
+    color: var(--color-primary-light);
+}
+
+.inputLogin input {
+    border: none;
+    outline: none;
+    flex: 1;
+    margin-left: 10px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+
+.textoLink{
+    color: var(--color-primary-light);
+    margin-top: 10px;
+    cursor: pointer;
+
+}
+.textoLink:hover{
+    color: var(--color-primary);
+}
+
+@media (max-width: 768px) {
+    .formularioLogin {
+        padding: 15px;
+    }
+
+    button {
+        font-size: 14px;
+    }
+}
+

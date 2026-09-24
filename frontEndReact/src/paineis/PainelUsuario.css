@@ -1,0 +1,108 @@
+.painel {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* =========================
+   FORMULÁRIO
+   ========================= */
+
+.formularioUsuario {
+    width: 100%;
+}
+
+.formularioUsuario h2 {
+    margin: 0 0 20px 0;
+}
+
+.dadosUsuario {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr auto;
+    gap: 10px;
+    align-items: center;
+}
+
+.dadosUsuario input {
+    width: 100%;
+    height: 38px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.dadosUsuario input:focus {
+    outline: none;
+    border-color: #666;
+}
+
+.dadosUsuario button {
+    height: 38px;
+    width: 150px;
+    padding: 0 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* =========================
+   TABELA
+   ========================= */
+
+.tabelaContainer {
+    width: 100%;
+    margin-top: 25px;
+    overflow-x: auto;
+}
+
+.tabela {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+/* Cabeçalho e células */
+
+.tabela th,
+.tabela td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+    word-wrap: break-word;
+}
+
+.tabela th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+/* Linhas alternadas */
+
+.tabela tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Efeito ao passar o mouse */
+
+.tabela tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* =========================
+   RESPONSIVIDADE
+   ========================= */
+
+@media (max-width: 800px) {
+
+    .dadosUsuario {
+        grid-template-columns: 1fr;
+    }
+
+    .dadosUsuario button {
+        width: 100%;
+    }
+
+}
