@@ -125,6 +125,37 @@ class CategoriaService{
         }
      }
 
+     async atualizarCategoria(id:number, categoriaDTO: CadastrarCategoriaDTO):Promise<ListarCategoriaDTO>{
+
+        try{
+            const resultB= await categoriaInfrastructure.buscarCategoriaPorId(id);
+            if(resultB.length === 0){
+                throw new Error("Categoria não existe no banco de dados")
+            }
+
+            const validarNome = await categoriaInfrastructure.buscarCategoriaPorNome(this.tratarNome(categoriaDTO.nome_categoria));
+            if(validarNome.length > 0 && validarNome[0].id !== id){
+                throw new Error("Já existe uma categoria com esse nome")
+            }
+
+            const categoria = new Categoria(categoriaDTO.nome_categoria, id);
+            const resultAtualizar= await categoriaInfrastructure.atualizarCategoria(id, categoria);
+            if(!resultAtualizar){
+                throw new Error("Erro ao atualizar a Categoria");
+            }
+
+            const categoriaResponseDTO:ListarCategoriaDTO={
+                id: id,
+                nome: categoriaDTO.nome_categoria
+            }
+
+            return categoriaResponseDTO;
+
+        } catch(erro){
+             throw new Error(erro.message)
+        }
+     }
+
 }
 
 const categoriaService = new CategoriaService();

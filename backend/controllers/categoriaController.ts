@@ -54,3 +54,18 @@ export async function deletarCategoria(req: Request, res: Response){
 
 }
 
+export async function atualizarCategoria(req: Request, res: Response){
+
+    try{
+           const id= Number(req.params.id);
+           const categoriaDTO:CadastrarCategoriaDTO = req.body;
+           const categoriaAtualizada= await categoriaService.atualizarCategoria(id, categoriaDTO)
+           res.status(200).json({categoriaAtualizada, mensagem:"Categoria atualizada com sucesso !"})
+
+    }catch(erro: any){
+            res.status(500).json({error:erro.message})
+
+    }
+
+}
+

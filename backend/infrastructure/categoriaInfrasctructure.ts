@@ -74,10 +74,21 @@ async listarCategorias(): Promise<any> {
     } finally{
         connection.release();
     }
-       
+
    }
 
+   async atualizarCategoria(id: number, categoria: Categoria): Promise<any> {
+    const connection = await pool.getConnection();
+    try{
+        const [result]= await connection.query<ResultSetHeader>("UPDATE categorias SET nome_categoria = ? where id = ?",[categoria.getNome(), id])
+        return result.affectedRows > 0;
+    }catch(erro){
+        throw erro
+    } finally{
+        connection.release();
+    }
 
+   }
 
 }
 const categoriaInfrastructure = new CategoriaInfrastructure();
