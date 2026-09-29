@@ -1,7 +1,7 @@
 .painel {
     width: 100%;
     padding: 20px;
-    position: relative;
+    
 }
 
 .formularioCategoria {
@@ -34,6 +34,7 @@
 .tabela {
     width: 100%;
     border-collapse: collapse;
+    position: absolute;
 }
 
 .tabela th,

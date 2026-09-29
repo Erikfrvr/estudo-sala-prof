@@ -1,21 +1,18 @@
 import { MdMode } from "react-icons/md";
-import { FaWindowClose } from "react-icons/fa";
+import { IoIosCloseCircle } from "react-icons/io";
 import "./ModalCategoria.css";
-function ModalCategoria({ nome, setNome, onAtualizar, onFechar }) {
-  return (
-    <div className="modalCategoria">
-        <div className="fechar">
-            <FaWindowClose onClick={onFechar} />
+function ModalCategoria(){
+    return(
+        <div className="modalCategoria">
+            <div className="fechar">
+                <IoIosCloseCircle  id="close" />
+            </div>
+
+            <input type="text" placeholder="Nome Categoria" name="nome" id="nome_categoria"  />
+            <button><MdMode/><span>Atualizar</span></button>
         </div>
-      <input
-        type="text"
-        placeholder="Nome da Categoria"
-        name="nome"
-        value={nome}
-        onChange={(e) => setNome(e.target.value)}
-      />
-      <button type="button" onClick={onAtualizar}><MdMode/>Atualizar</button>
-    </div>
-  );
-}
+
+    );
+};
+
 export default ModalCategoria;

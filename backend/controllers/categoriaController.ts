@@ -29,7 +29,7 @@ export async function criarCategoria(req:Request, res:Response) {
 export async function buscarCategoriaPorNome(req: Request, res: Response) { 
     
         try{
-            const nome= req.params.nome as string;
+            const nome= req.params.nome;
             const categoria= await categoriaService.buscarCategoriaPorNome(nome);
             res.status(200).json(categoria);
         }catch(error){
@@ -43,27 +43,12 @@ export async function buscarCategoriaPorNome(req: Request, res: Response) {
 export async function deletarCategoria(req: Request, res: Response){
 
     try{
-           const id= Number(req.params.id);
+           const id= req.params.id;
            await categoriaService.deletarCategoria(id)
            res.status(200).json({mensagem:"Categoria deletada com sucesso !"})
 
-    }catch(erro: any){
-            res.status(500).json({error:erro.message})
-
-    }
-
-}
-
-export async function atualizarCategoria(req: Request, res: Response){
-
-    try{
-           const id= Number(req.params.id);
-           const categoriaDTO:CadastrarCategoriaDTO = req.body;
-           const categoriaAtualizada= await categoriaService.atualizarCategoria(id, categoriaDTO)
-           res.status(200).json({categoriaAtualizada, mensagem:"Categoria atualizada com sucesso !"})
-
-    }catch(erro: any){
-            res.status(500).json({error:erro.message})
+    }catch(erro){
+            res.status(500).json({error:erro})
 
     }
 

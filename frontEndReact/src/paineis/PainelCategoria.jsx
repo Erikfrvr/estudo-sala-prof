@@ -10,46 +10,17 @@ function PainelCategoria() {
 
     const [categorias,setCategorias]=useState([]);
     const [nomeCategoria,setNomeCategoria]=useState("");
-    const [idEditando,setIdEditando]=useState(null);
-    const [nomeEditando,setNomeEditando]=useState("");
-
-    function handleEditar(dados){
-        setIdEditando(dados.id)
-        setNomeEditando(dados.nome)
-    }
-
-    function fecharModal(){
-        setIdEditando(null)
-        setNomeEditando("")
-    }
-
-    async function handleAtualizar(){
-        if(!idEditando){
-            alert("Clique no lápis de uma categoria para editar")
-            return
-        }
-        const categoria={nome_categoria:nomeEditando}
-
-        try{
-            const response=await categoriaService.atualizarCategoria(idEditando, categoria);
-            alert(response.mensagem)
-            fecharModal()
-            await carregarCategoria()
-
-        }catch(erro){
-            alert(erro.message)
-        }
-    }
 
 
     async function handelDelete(id) {
         try{
             const response= await categoriaService.deletarCategoria(id);
-            alert(response.mensagem)
-            await carregarCategoria();
+            const mensagem=  response.json();
+            alert(mensagem.mensagem)
+            carregarCategoria();
 
         }catch(erro){
-            alert(erro.message)
+            alert(erro)
         }
         
     }
@@ -76,11 +47,10 @@ function PainelCategoria() {
         try{
             const response=await categoriaService.criarCategoria(categoria);
             alert(response.mensagem)
-            setNomeCategoria("")
            await carregarCategoria()
 
         }catch(erro){
-            alert(erro.message)
+            alert("Erro: ", erro)
         }
 
     }
@@ -108,12 +78,6 @@ function PainelCategoria() {
 
             </form>
 
-            <ModalCategoria
-                nome={nomeEditando}
-                setNome={setNomeEditando}
-                onAtualizar={handleAtualizar}
-                onFechar={fecharModal}
-            />
 
             <div className="tabelaContainer">
 
@@ -136,7 +100,7 @@ function PainelCategoria() {
                                     <td>{dados.nome}</td>
                                     <td className="acoes">
                                         <MdDelete className="deletar" onClick={() => handelDelete(dados.id)} />
-                                        <MdMode className="atualizar" onClick={() => handleEditar(dados)} />
+                                        <MdMode className="atualizar" />
                                         
                                     </td>
                                 
@@ -150,6 +114,9 @@ function PainelCategoria() {
                 </table>
 
             </div>
+        <ModalCategoria/>
+
+
 
         </div>
     );
