@@ -1,5 +1,4 @@
 .modalCategoria{
-
     width: 250px;
     height: 150px;
     padding: 15px;
@@ -23,6 +22,8 @@
     justify-content: flex-end;
     color:var(--color-primary);
 }
+
+
 #close{
     cursor: pointer;
 }

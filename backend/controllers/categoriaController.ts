@@ -1,6 +1,7 @@
 import { Request, Response} from "express";
 import categoriaService from "../services/CategoriaService";
 import { CadastrarCategoriaDTO } from "../models/dto/categoria/CadastrarCategoriaDTO";
+import { AtualizarCategoriaDTO } from "../models/dto/categoria/AtualizarCategoriaDTO";
 export async function listarCategorias(req: Request,res: Response){
 
     try{
@@ -52,5 +53,19 @@ export async function deletarCategoria(req: Request, res: Response){
 
     }
 
+}
+
+
+export async function atualizarCategoria(req: Request, res:Response){
+
+    try{
+        const id= req.params.id;
+        const categoria:AtualizarCategoriaDTO=  req.body;
+        console.log(id,categoria)
+        const response= await categoriaService.updateCategoria(id,categoria);
+        res.status(202).json({mensagem:"Categoria atualizada com sucesso !"})
+    }catch(erro){
+        res.status(404).json({error:erro})
+    }
 }
 

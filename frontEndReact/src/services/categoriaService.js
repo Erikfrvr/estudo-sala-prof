@@ -5,6 +5,14 @@ async function listarCategorias(){
    return await api("api/categorias")
 }
 
+async function atualizarCategoria(categoria) {
+    return await api(`api/categorias/${categoria.id}`,
+        {method:'PUT',
+         body: JSON.stringify(categoria)   
+        }
+    )  
+}
+
 async function criarCategoria(categoria) {
     return await api("api/categorias",{
         method:'POST',
@@ -18,4 +26,4 @@ async function deletarCategoria(id){
     });
 }
 
-export default {listarCategorias,criarCategoria,deletarCategoria};
+export default {listarCategorias,criarCategoria,deletarCategoria,atualizarCategoria};

@@ -2,6 +2,7 @@ import { Categoria } from "../models/entidade/Categoria";
 import { ListarCategoriaDTO } from "../models/dto/categoria/ListarCategoriaDTO";
 import { CadastrarCategoriaDTO } from "../models/dto/categoria/CadastrarCategoriaDTO";
 import categoriaInfrastructure from "../infrastructure/categoriaInfrasctructure";
+import { AtualizarCategoriaDTO } from "../models/dto/categoria/AtualizarCategoriaDTO";
 
 class CategoriaService{
 
@@ -58,6 +59,8 @@ class CategoriaService{
         throw new Error(`Erro ao criar categoria: ${erro.message}`);
     }
    }
+
+
 
 
    async buscarCategoriaPorNome(nome: string): Promise<ListarCategoriaDTO> {
@@ -123,6 +126,21 @@ class CategoriaService{
         } catch(erro){
              throw new Error(erro)
         }
+     }
+
+     async updateCategoria(id:Number,categoriaDTO:AtualizarCategoriaDTO){
+
+        try{
+
+            const categoria= new Categoria(categoriaDTO.nome_categoria,categoriaDTO.id);
+            const resultUpadateCategoria= await categoriaInfrastructure.atualizarCategoria(id,categoria);
+            if(!resultUpadateCategoria){
+                throw new Error("Erro ao tentar atualizar a categoria !")
+            }
+        }catch(erro){
+            throw new Error(erro);
+        }
+
      }
 
 }

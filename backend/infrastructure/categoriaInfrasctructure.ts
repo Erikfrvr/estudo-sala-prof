@@ -67,7 +67,7 @@ async listarCategorias(): Promise<any> {
    async deletarCategoria(id: Number): Promise<any> {
     const connection = await pool.getConnection();
     try{
-        const [result]= await pool.query<ResultSetHeader>("DELETE FROM categorias where id = ?",[id])
+        const [result]= await connection.query<ResultSetHeader>("DELETE FROM categorias where id = ?",[id])
         return result.affectedRows > 0;
     }catch(erro){
         throw new Error("Categoria não encontrada")
@@ -75,6 +75,19 @@ async listarCategorias(): Promise<any> {
         connection.release();
     }
        
+   }
+
+   async atualizarCategoria(id: Number, categoria: Categoria): Promise<any> {
+        const connection= await pool.getConnection();
+        try{
+            const[ result]= await connection.query<ResultSetHeader>("UPDATE CATEGORIAS SET nome_categoria =? where id=?",[categoria.getNome(),id]);
+            return result.affectedRows >0;
+        }catch(erro){
+            throw new Error("Categoria não foi atualizada, erro ao tentar comunicar com o banco de dados");
+        } finally{
+            connection.release();
+        }
+
    }
 
 

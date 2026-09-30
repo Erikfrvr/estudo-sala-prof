@@ -3,7 +3,7 @@ import categoriaService from "../services/categoriaService";
 import {useState,useEffect} from "react";
 import { MdDelete,MdMode } from "react-icons/md";
 import ModalCategoria from "../components/ModalCategoria";
-import "../components/ModalCategoria.css";
+import "../components/ModalCategoria.css"
 
 
 function PainelCategoria() {
@@ -11,21 +11,22 @@ function PainelCategoria() {
 
     const [categorias,setCategorias]=useState([]);
     const [nomeCategoria,setNomeCategoria]=useState("");
+    const [idCategoria,setIdCategoria]=useState({});
 
-    function openModalCategoria(e){
-        const tagmodalCategoria=document.querySelector(".modalCategoria");
-        tagmodalCategoria.classList.add("open");
+    function openModalCategoria(dados){
+        setIdCategoria(dados);
+        const tagModalCategoria= document.querySelector(".modalCategoria");
+        tagModalCategoria.classList.add("open");
     }
 
     async function handelDelete(id) {
         try{
             const response= await categoriaService.deletarCategoria(id);
-            const mensagem=  response.json();
-            alert(mensagem.mensagem)
-            carregarCategoria();
+            alert(response.mensagem)
+            await carregarCategoria();
 
         }catch(erro){
-            alert(erro)
+            alert(erro.error)
         }
         
     }
@@ -105,8 +106,8 @@ function PainelCategoria() {
                                     <td>{dados.nome}</td>
                                     <td className="acoes">
                                         <MdDelete className="deletar" onClick={() => handelDelete(dados.id)} />
-                                        <MdMode className="atualizar" onClick={openModalCategoria} />
-                                        
+                                        <MdMode className="atualizar" onClick={()=>openModalCategoria(dados)} />
+            
                                     </td>
                                 
                                 </tr>
@@ -119,8 +120,8 @@ function PainelCategoria() {
                 </table>
 
             </div>
-        <ModalCategoria/>
-
+        
+            <ModalCategoria idCategoria={idCategoria} carregar={carregarCategoria} />
 
 
         </div>
